@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Work Update Form</title>
+</head>
+<body>
+<h1>Work Update Form</h1>
+
+<form th:action="@{../jobs/newEditedWork}" th:object="${editedWork}" method="post">
+    ID: <input type="text" th:field="*{id}" readonly/>
+    Name: <input type="text" th:field="*{name}"/>
+
+    <input type="submit" name="action" value="Update"/>
+    <input type="reset" value="Reset"/>
+    <input type="submit" name="action" value="Delete"/>
+</form>
+</body>
+</html>

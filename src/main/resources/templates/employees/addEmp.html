@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding New Employee Form</title>
+
+    <!-- css link -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
+
+    <style>
+        .search-form {
+            border: 1px solid #000;
+            border-radius: 2px;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<h1 class="heading-page">Adding New Employee Form</h1>
+
+<div class="search-form-div">
+    <form class="search-form" th:action="@{../employees/newEmployee}" th:object="${addEmp}" method="post">
+        <span>Name:</span>
+        <input type="text" required th:field="${addEmp.firstName}" th:value="${addEmp.firstName}"
+                     th:name="name"/>
+        <span>Surname:</span>
+        <input type="text" required th:field="${addEmp.lastName}" th:value="${addEmp.lastName}"
+                        th:name="surname"/>
+        <span>Phone:</span>
+        <input type="text" required th:field="${addEmp.phone}" th:value="${addEmp.phone}"
+                      th:name="phone"/>
+        <span>Address:</span>
+        <input type="text" required th:field="${addEmp.address}" th:value="${addEmp.address}"
+                        th:name="address"/>
+        <span>Department's name:</span>
+        <input type="text" required th:field="${addEmp.department}" th:value="${addEmp.department}"
+                                  th:name="department"/>
+        <span>Job's name:</span>
+        <input type="text" required th:field="${addEmp.work}" th:value="${addEmp.work}"
+                           th:name="work"/>
+
+        <div class="btn--inputs">
+            <input type="submit" value="Add">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</div>
+</body>
+</html>

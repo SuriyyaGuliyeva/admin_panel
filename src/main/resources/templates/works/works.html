@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Jobs' List</title>
+
+    <!-- css link -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}"/>
+</head>
+<body>
+<h1 class="heading-page">Jobs' List</h1>
+
+<table class="table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Identity document (ID)</th>
+            <th>Name</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="work:${works}">
+            <td th:text="${work.id}">1</td>
+            <td th:text="${work.name}">Developer</td>
+            <td>
+                <form class="search-form-edit" th:action="@{../jobs/edit}" th:object="${work.id}" method="get">
+                    <button type="submit" th:value="${work.id}" th:name="id">Edit this job</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<form class="btn--form" th:action="@{../jobs/addOrEdit}" method="get">
+    <input type="submit" name="action" value="Add a new job"/>
+</form>
+</body>
+</html>

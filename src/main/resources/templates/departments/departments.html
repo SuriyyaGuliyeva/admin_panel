@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments' List</title>
+
+    <!-- css link -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}"/>
+</head>
+<body>
+<h1 class="heading-page">Departments' List</h1>
+
+<table class="table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Identity document (ID)</th>
+            <th>Name</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="department:${departments}">
+            <td th:text="${department.id}">1</td>
+            <td th:text="${department.name}">IT</td>
+            <td>
+                <form class="search-form-edit" th:action="@{../departments/edit}" th:object="${department.id}" method="get">
+                    <button type="submit" th:value="${department.id}" th:name="id">Edit this department</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<form class="btn--form" th:action="@{../departments/addOrEdit}" method="get">
+    <input type="submit" name="action" value="Add a new department"/>
+</form>
+</body>
+</html>

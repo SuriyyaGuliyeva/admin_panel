@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Update Form</title>
+
+    <!-- css link -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<h1 class="heading-page">Employee Update Form</h1>
+
+<div class="search-form-div">
+    <form class="search-form" th:action="@{../employees/edit}" th:object="${searchEmp}" method="get">
+        Search by ID: <input type="number" th:field="${searchEmp.id}" th:value="${searchEmp.id}" th:name="id" required />
+
+        <div class="btn--inputs">
+            <input type="submit" value="Search" />
+            <input type="reset" value="Reset" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
