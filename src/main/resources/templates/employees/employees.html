@@ -8,37 +8,44 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}"/>
 </head>
 <body>
+<form th:action="@{/logout}" method="post">
+    <p>
+        Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+    </p>
+    <input type="submit" value="Sign Out"/>
+</form>
+
 <h1 class="heading-page">Employees' List</h1>
 
 <table class="table-bordered table-striped">
     <thead>
-        <tr>
-            <th>Identity document (ID)</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Department ID</th>
-            <th>Job ID</th>
-            <th>Edit</th>
-        </tr>
+    <tr>
+        <th>Identity document (ID)</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Department ID</th>
+        <th>Job ID</th>
+        <th>Edit</th>
+    </tr>
     </thead>
 
     <tbody>
-        <tr th:each="employee:${employees}">
-            <td th:text="${employee.id}">1</td>
-            <td th:text="${employee.firstName}">Ahmad</td>
-            <td th:text="${employee.lastName}">Azadov</td>
-            <td th:text="${employee.phone}">050-123-45-67</td>
-            <td th:text="${employee.address}">A.Rajabli str.</td>
-            <td th:text="${employee.department}">5</td>
-            <td th:text="${employee.work}">4</td>
-            <td>
-                <form class="search-form-edit" th:action="@{../employees/edit}" th:object="${employee.id}" method="get">
-                    <button type="submit" th:value="${employee.id}" th:name="id">Edit this employee</button>
-                </form>
-            </td>
-        </tr>
+    <tr th:each="employee:${employees}">
+        <td th:text="${employee.id}">1</td>
+        <td th:text="${employee.firstName}">Name</td>
+        <td th:text="${employee.lastName}">Surname</td>
+        <td th:text="${employee.phone}">Phone</td>
+        <td th:text="${employee.address}">Address</td>
+        <td th:text="${employee.department}">Department</td>
+        <td th:text="${employee.work}">Job</td>
+        <td>
+            <form class="search-form-edit" th:action="@{../employees/edit}" th:object="${employee.id}" method="get">
+                <button type="submit" th:value="${employee.id}" th:name="id">Edit this employee</button>
+            </form>
+        </td>
+    </tr>
     </tbody>
 </table>
 

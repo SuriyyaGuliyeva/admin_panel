@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}"/>
 </head>
 <body>
+<form th:action="@{/logout}" method="post">
+    <p>
+        Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+    </p>
+    <input type="submit" value="Sign Out" />
+</form>
+
 <h1 class="heading-page">Jobs' List</h1>
 
 <table class="table-bordered table-striped">
