@@ -2,7 +2,7 @@ package com.apps.first_app;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.apps.first_app.model.User;
-import com.apps.first_app.repository.UserRepository;
+import com.apps.first_app.repository.inter.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

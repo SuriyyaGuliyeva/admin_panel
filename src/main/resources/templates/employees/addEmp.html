@@ -1,53 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Adding New Employee Form</title>
-
-    <!-- css link -->
-    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
-
-    <style>
-        .search-form {
-            border: 1px solid #000;
-            border-radius: 2px;
-            padding: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-    </style>
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<h1 class="heading-page">Adding New Employee Form</h1>
-
-<div class="search-form-div">
-    <form class="search-form" th:action="@{../employees/newEmployee}" th:object="${addEmp}" method="post">
-        <span>Name:</span>
-        <input type="text" required th:field="${addEmp.firstName}" th:value="${addEmp.firstName}"
-                     th:name="name"/>
-        <span>Surname:</span>
-        <input type="text" required th:field="${addEmp.lastName}" th:value="${addEmp.lastName}"
-                        th:name="surname"/>
-        <span>Phone:</span>
-        <input type="text" required th:field="${addEmp.phone}" th:value="${addEmp.phone}"
-                      th:name="phone"/>
-        <span>Address:</span>
-        <input type="text" required th:field="${addEmp.address}" th:value="${addEmp.address}"
-                        th:name="address"/>
-        <span>Department's name:</span>
-        <input type="text" required th:field="${addEmp.department}" th:value="${addEmp.department}"
-                                  th:name="department"/>
-        <span>Job's name:</span>
-        <input type="text" required th:field="${addEmp.work}" th:value="${addEmp.work}"
-                           th:name="work"/>
-
-        <div class="btn--inputs">
-            <input type="submit" value="Add">
-            <input type="reset" value="Reset">
+<div layout:fragment="content">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Employee Add</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee Add</li>
+                    </ol>
+                </div>
+            </div>
         </div>
-    </form>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Form</h3>
+                        </div>
+                        <form class="form-horizontal" th:action="@{../employees/newEmployee}" th:object="${addEmp}"
+                              method="post">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${addEmp.firstName}"
+                                               th:value="${addEmp.firstName}" th:name="name"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Surname</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${addEmp.lastName}"
+                                               th:value="${addEmp.lastName}" th:name="name"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${addEmp.phone}"
+                                               th:value="${addEmp.phone}" th:name="name"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${addEmp.address}"
+                                               th:value="${addEmp.address}" th:name="name"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Department</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" th:field="${addEmp.department}"
+                                                id="dropDepartment">
+                                            <option value="0" disabled>Select a department</option>
+                                            <option th:each="department : ${departments}" th:value="${department.id}"
+                                                    th:text="${department.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Job</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" th:field="${addEmp.work}" id="dropWork">
+                                            <option value="0" disabled>Select a job</option>
+                                            <option th:each="work : ${works}" th:value="${work.id}"
+                                                    th:text="${work.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="reset" class="btn btn-default float-right m-1">Reset
+                                </button>
+                                <button type="submit" class="btn btn-info float-right m-1" value="Add">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 </body>
 </html>

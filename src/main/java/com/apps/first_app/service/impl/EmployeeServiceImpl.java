@@ -1,9 +1,8 @@
 package com.apps.first_app.service.impl;
 
-import com.apps.first_app.model.Department;
 import com.apps.first_app.model.Employee;
-import com.apps.first_app.repository.EmployeeRepository;
-import com.apps.first_app.service.EmployeeService;
+import com.apps.first_app.repository.inter.EmployeeRepository;
+import com.apps.first_app.service.inter.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

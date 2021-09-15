@@ -1,24 +1,105 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Employee Update Form</title>
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<h1>Employee Update Form</h1>
-
-<form th:action="@{../employees/updateOrDelete}" th:object="${updatedEmp}" method="post">
-  ID: <input type="text" th:field="*{id}" readonly/>
-  Name: <input type="text" th:field="*{firstName}"/>
-  Surname: <input type="text" th:field="*{lastName}"/>
-  Phone: <input type="text" th:field="*{phone}"/>
-  Address: <input type="text" th:field="*{address}"/>
-  Department's name: <input type="text" th:field="*{department}"/>
-  Job's name: <input type="text" th:field="*{work}"/>
-
-  <input type="submit" name="action" value="Update"/>
-  <input type="reset" value="Reset"/>
-  <input type="submit" name="action" value="Delete"/>
-</form>
+<div layout:fragment="content">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Employee Update</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Employee Update</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Form</h3>
+                        </div>
+                        <form class="form-horizontal" th:action="@{../employees/update}"
+                              th:object="${updatedEmp}"
+                              method="post">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">ID</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${updatedEmp.id}"
+                                               th:value="${updatedEmp.id}" th:name="id" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required
+                                               th:field="${updatedEmp.firstName}"
+                                               th:value="${updatedEmp.firstName}" th:name="name"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Surname</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required
+                                               th:field="${updatedEmp.lastName}"
+                                               th:value="${updatedEmp.lastName}" th:name="surname"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required th:field="${updatedEmp.phone}"
+                                               th:value="${updatedEmp.phone}" th:name="phone"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required
+                                               th:field="${updatedEmp.address}"
+                                               th:value="${updatedEmp.address}" th:name="address"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Department</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" th:field="${updatedEmp.department}"
+                                                id="dropDepartment">
+                                            <option value="0" disabled>Select a department</option>
+                                            <option th:each="department : ${departments}" th:value="${department.id}"
+                                                    th:text="${department.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Job</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" th:field="${updatedEmp.work}" id="dropWork">
+                                            <option value="0" disabled>Select a job</option>
+                                            <option th:each="work : ${works}" th:value="${work.id}"
+                                                    th:text="${work.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <input type="submit" value="Update" class="btn btn-primary"/>
+                                <input type="reset" value="Reset" class="btn btn-primary"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 </body>
 </html>

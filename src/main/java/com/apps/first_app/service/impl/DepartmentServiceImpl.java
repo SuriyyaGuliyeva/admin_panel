@@ -1,10 +1,8 @@
 package com.apps.first_app.service.impl;
 
 import com.apps.first_app.model.Department;
-import com.apps.first_app.model.Work;
-import com.apps.first_app.repository.DepartmentRepository;
-import com.apps.first_app.service.DepartmentService;
-import javassist.NotFoundException;
+import com.apps.first_app.repository.inter.DepartmentRepository;
+import com.apps.first_app.service.inter.DepartmentService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

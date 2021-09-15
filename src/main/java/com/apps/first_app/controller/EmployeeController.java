@@ -1,7 +1,11 @@
 package com.apps.first_app.controller;
 
+import com.apps.first_app.model.Department;
 import com.apps.first_app.model.Employee;
-import com.apps.first_app.service.EmployeeService;
+import com.apps.first_app.model.Work;
+import com.apps.first_app.service.inter.DepartmentService;
+import com.apps.first_app.service.inter.EmployeeService;
+import com.apps.first_app.service.inter.WorkService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +17,13 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final WorkService workService;
+    private final DepartmentService departmentService;
 
-
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, WorkService workService, DepartmentService departmentService) {
         this.employeeService = employeeService;
+        this.workService = workService;
+        this.departmentService = departmentService;
     }
 
     @GetMapping("/list")
@@ -28,7 +35,12 @@ public class EmployeeController {
 
     @GetMapping(value = "/addOrEdit", params = "action=Add a new employee")
     public String addEmployeeFrom(Model model) {
+        List<Work> works = workService.allWorks();
+        List<Department> departments = departmentService.getAllDepartments();
+
         model.addAttribute("addEmp", new Employee());
+        model.addAttribute("works", works);
+        model.addAttribute("departments", departments);
         return "employees/addEmp";
     }
 
@@ -42,41 +54,64 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/edit")
+    public String editEmp(Model model, @RequestParam("id") Long id) {
+        Employee employee = employeeService.getById(id);
+        List<Work> works = workService.allWorks();
+        List<Department> departments = departmentService.getAllDepartments();
+
+        if (employee == null) {
+            return "commonPages/notFoundPage";
+        } else {
+            model.addAttribute("updatedEmp", employee);
+            model.addAttribute("works", works);
+            model.addAttribute("departments", departments);
+            return "employees/updatedEmp";
+        }
+    }
+
+    @PostMapping(value = "/update")
+    public String updateEmp(@ModelAttribute Employee employee) {
+        employeeService.update(employee);
+        return "redirect:/employees/list";
+    }
+
+//    @PostMapping(value = "/updateOrDelete", params = "action=Delete")
+//    public String deleteEmp(@ModelAttribute Employee employee) {
+//        if (employee.getDepartment() == null || employee.getWork() == null) {
+//            return "commonPages/notFoundDepOrWork";
+//        } else {
+//            employeeService.delete(employee.getId());
+//            return "redirect:/employees/list";
+//        }
+//    }
+
+    @PostMapping("/deleteEmp")
+    public String delete(@ModelAttribute Employee employee, @RequestParam("id") Long id) {
+        employeeService.delete(employee.getId());
+        return "redirect:/employees/list";
+    }
+
 //    @GetMapping(value = "/addOrEdit", params = "action=Edit an employee")
 //    public String editEmployeeForm(Model model) {
 //        model.addAttribute("searchEmp", new Employee());
 //        return "employees/searchEmp";
 //    }
 
-    @GetMapping("/edit")
-    public String editEmp(Model model, @RequestParam("id") Long id) {
-        Employee employee = employeeService.getById(id);
+//    @GetMapping(value = "/tabletest")
+//    public String tabletest(Model model, @RequestParam("id") Long id) {
+//        Employee employee = employeeService.getById(id);
+//
+//        if (employee == null) {
+//            return "commonPages/notFoundPage";
+//        } else {
+//            List<Work> works = workService.allWorks();
+//            List<Department> departments = departmentService.getAllDepartments();
+//            model.addAttribute("updatedEmp", employee);
+//            model.addAttribute("works", works);
+//            model.addAttribute("departments", departments);
+//            return "layout/tabletest";
+//        }
+//    }
 
-        if (employee == null) {
-            return "commonPages/notFoundPage";
-        } else {
-            model.addAttribute("updatedEmp", employee);
-            return "employees/updatedEmp";
-        }
-    }
-
-    @PostMapping(value = "/updateOrDelete", params = "action=Update")
-    public String updateEmp(@ModelAttribute Employee employee) {
-        if (employee.getDepartment() == null || employee.getWork() == null) {
-            return "commonPages/notFoundDepOrWork";
-        } else {
-            employeeService.update(employee);
-            return "redirect:/employees/list";
-        }
-    }
-
-    @PostMapping(value = "/updateOrDelete", params = "action=Delete")
-    public String deleteEmp(@ModelAttribute Employee employee) {
-        if (employee.getDepartment() == null || employee.getWork() == null) {
-            return "commonPages/notFoundDepOrWork";
-        } else {
-            employeeService.delete(employee.getId());
-            return "redirect:/employees/list";
-        }
-    }
 }

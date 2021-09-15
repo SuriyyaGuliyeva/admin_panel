@@ -1,9 +1,7 @@
 package com.apps.first_app.controller;
 
 import com.apps.first_app.model.User;
-import com.apps.first_app.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.apps.first_app.repository.inter.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +22,10 @@ public class PageController {
         return "commonPages/index";
     }
 
-    @GetMapping("/homePage")
-    public String homePage() {
-        return "commonPages/homePage";
-    }
+//    @GetMapping("/homePage")
+//    public String homePage() {
+//        return "commonPages/homePage";
+//    }
 
     @GetMapping("/register")
     public String showSignUpForm(Model model) {

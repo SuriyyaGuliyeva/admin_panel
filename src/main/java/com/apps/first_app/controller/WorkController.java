@@ -1,7 +1,7 @@
 package com.apps.first_app.controller;
 
 import com.apps.first_app.model.Work;
-import com.apps.first_app.service.WorkService;
+import com.apps.first_app.service.inter.WorkService;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +32,8 @@ public class WorkController {
         return "works/works";
     }
 
+
+
     @GetMapping(value = "/addOrEdit", params = "action=Add a new job")
     public String add(Model model) {
         model.addAttribute("newJob", new Work());
@@ -49,6 +51,7 @@ public class WorkController {
 //        model.addAttribute("search", new Work());
 //        return "works/search";
 //    }
+
 
     @GetMapping("/edit")
     public String edit(Model model, @RequestParam("id") Long id) throws NotFoundException {

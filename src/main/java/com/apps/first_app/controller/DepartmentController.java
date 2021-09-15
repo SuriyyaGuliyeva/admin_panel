@@ -1,7 +1,7 @@
 package com.apps.first_app.controller;
 
 import com.apps.first_app.model.Department;
-import com.apps.first_app.service.DepartmentService;
+import com.apps.first_app.service.inter.DepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
@@ -28,6 +28,8 @@ public class DepartmentController {
         model.addAttribute("departments", departments);
         return "departments/departments";
     }
+
+
 
     @GetMapping(value = "/addOrEdit", params = "action=Add a new department")
     public String addDep(Model model) {
@@ -61,6 +63,7 @@ public class DepartmentController {
         }
     }
 
+
     @PostMapping(value = "/updateOrDelete", params = "action=Update")
     @ApiOperation(value = "Method for update a department")
     public String update(@ModelAttribute Department department) {
@@ -71,7 +74,7 @@ public class DepartmentController {
     @PostMapping(value = "/updateOrDelete", params = "action=Delete")
     @ApiOperation(value = "Method for delete a department")
     public String delete(@ModelAttribute Department department) {
-        departmentService.delete(department.getId());
+//        departmentService.delete(department.getId());
         return "redirect:/departments/list";
     }
 
