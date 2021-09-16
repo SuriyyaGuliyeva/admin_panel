@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-
-    <!-- css link -->
-    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" />
-
-    <style>
-        body {
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body>
-<div class="home--page">
-
-    <table class="home-page-table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>
-                    <i>Welcome to My First App's Home Page. Let's start!</i>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <a href="jobs/list" target="_blank">Jobs' List</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="departments/list" target="_blank">Departments' List</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="employees/list" target="_blank">Employees' List</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div layout:fragment="content">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <a href="/" class="brand-link text-center d-inline-block">
+                            <img src="../../css/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                                 th:href="@{/css/dist/img/AdminLTELogo.png}"
+                                 class="brand-image img-circle elevation-3" style="opacity: .8">
+                        </a>
+                        <h1>Welcome to AdminLTE 3 <b>[[${#request.userPrincipal.principal.fullName}]]</b>!</h1>
+                        <div>
+                            <div class="card d-inline-block" style="width: 18rem;">
+                                <a class="text-cyan" href="/employees/list">
+                                    <div class="card-body">
+                                        <p class="card-text">Employees' List</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card d-inline-block" style="width: 18rem;">
+                                <a class="text-cyan" href="/departments/list">
+                                    <div class="card-body">
+                                        <p class="card-text">Departments' List</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card d-inline-block" style="width: 18rem;">
+                                <a class="text-cyan" href="/jobs/list">
+                                    <div class="card-body">
+                                        <p class="card-text">Jobs' List</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 </body>
 </html>

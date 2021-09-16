@@ -4,11 +4,29 @@
     <meta charset="ISO-8859-1">
     <title>Registration Success</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <style>
+        .for-registration {
+            font-size: 16px;
+            padding: 15px 50px;
+            border-radius: 50px;
+            border: 1px solid #343a40;
+            background: #343a40;
+            color: #fff;
+            transition: .3s ease-in-out;
+        }
+
+        .for-registration:hover {
+            background: #007bff;
+            color: #fff;
+            border-color: #007bff;
+            transition: .3s ease-in-out;
+        }
+    </style>
 </head>
 <body>
 <div class="container text-center">
     <h3>You have signed up successfully!</h3>
-    <h4><a th:href="@{/login}">Click here to Login</a></h4>
+    <h4><a class="for-registration text-decoration-none mt-3 d-inline-block" th:href="@{/login}">Click here to Login</a></h4>
 </div>
 
 </body>

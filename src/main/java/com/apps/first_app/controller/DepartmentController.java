@@ -53,7 +53,7 @@ public class DepartmentController {
 
     @GetMapping("/edit")
     public String editDep(Model model, @RequestParam("id") Long id) {
-        Department department = departmentService.getById(id); // cashdigim yer
+        Department department = departmentService.getById(id);
 
         if (department == null) {
             return "commonPages/notFoundPage";

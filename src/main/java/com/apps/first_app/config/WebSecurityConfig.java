@@ -46,6 +46,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/employees/list", "/jobs/list", "/departments/list").authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .usernameParameter("email")
+//                .defaultSuccessUrl("/")
+//                .permitAll()
+//                .and()
+//                .logout().logoutSuccessUrl("/").permitAll();
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -53,11 +67,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .usernameParameter("email")
-                .defaultSuccessUrl("/")
-                .permitAll()
+                    .loginPage("/login")
+                    .usernameParameter("email")
+                    .permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .rememberMe().key("AbcdEfghIjklmNopQrsTuvXyz_0123456789")
+                .and()
+                .logout().permitAll();
     }
 }
 

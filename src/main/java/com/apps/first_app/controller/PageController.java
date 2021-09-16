@@ -2,6 +2,9 @@ package com.apps.first_app.controller;
 
 import com.apps.first_app.model.User;
 import com.apps.first_app.repository.inter.UserRepository;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +33,13 @@ public class PageController {
     @GetMapping("/register")
     public String showSignUpForm(Model model) {
         model.addAttribute("user", new User());
-        return "commonPages/signupForm";
+
+        // bu kodun register ucun duzgunluyunden emin ol
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "commonPages/signupForm";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/process_register")
@@ -40,6 +49,29 @@ public class PageController {
         user.setPassword(encodedPassword);
 
         repo.save(user);
-        return "registerOrLogin/registerSuccess";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "register/login";
+        }
+        return "redirect:/";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

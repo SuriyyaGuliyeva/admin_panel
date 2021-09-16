@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
-<body >
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
 <div layout:fragment="content">
     <section class="content-header">
         <div class="container-fluid">
@@ -9,10 +10,9 @@
                     <p>
                         Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
                     </p>
-                    <input type="submit" value="Sign Out" />
+                    <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>
                 </form>
             </div>
-
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Departments</h1><br>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item active">Departments</li>
                     </ol>
                 </div>
@@ -45,6 +45,7 @@
                                     <th>Identity document (ID)</th>
                                     <th>Name</th>
                                     <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -52,8 +53,11 @@
                                     <td th:text="${department.id}">1</td>
                                     <td th:text="${department.name}">IT</td>
                                     <td>
-                                        <form class="search-form-edit" th:action="@{../departments/edit}" th:object="${department.id}" method="get">
-                                            <button type="submit" th:value="${department.id}" th:name="id" class="btn btn-primary">Edit this department</button>
+                                        <form class="search-form-edit" th:action="@{../departments/edit}"
+                                              th:object="${department.id}" method="get">
+                                            <button type="submit" th:value="${department.id}" th:name="id"
+                                                    class="btn btn-primary">Edit this department
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -63,6 +67,7 @@
                                     <th>Identity document (ID)</th>
                                     <th>Name</th>
                                     <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </tfoot>
                             </table>
