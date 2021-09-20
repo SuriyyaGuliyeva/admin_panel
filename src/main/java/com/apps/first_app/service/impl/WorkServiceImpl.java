@@ -1,5 +1,6 @@
 package com.apps.first_app.service.impl;
 
+import com.apps.first_app.model.Employee;
 import com.apps.first_app.model.Work;
 import com.apps.first_app.repository.inter.WorkRepository;
 import com.apps.first_app.service.inter.WorkService;
@@ -35,13 +36,8 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public void update(Work work) {
-        Work oldWork = workRepository.findById(work.getId()).get();
-
-        oldWork.setId(work.getId());
-        oldWork.setName(work.getName());
-
-        workRepository.save(oldWork);
+    public void add(Work work) {
+        workRepository.save(work);
     }
 
     @Override
@@ -58,14 +54,23 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public void update(Work work) {
+        Work oldWork = workRepository.findById(work.getId()).get();
+
+        oldWork.setId(work.getId());
+        oldWork.setName(work.getName());
+
+        workRepository.save(oldWork);
+    }
+
+
+
+    @Override
     public void delete(Long id) {
         workRepository.deleteById(id);
     }
 
-    @Override
-    public void add(Work work) {
-        workRepository.save(work);
-    }
+
 
 
 }

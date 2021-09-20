@@ -98,20 +98,4 @@ public class EmployeeController {
 //        return "employees/searchEmp";
 //    }
 
-//    @GetMapping(value = "/tabletest")
-//    public String tabletest(Model model, @RequestParam("id") Long id) {
-//        Employee employee = employeeService.getById(id);
-//
-//        if (employee == null) {
-//            return "commonPages/notFoundPage";
-//        } else {
-//            List<Work> works = workService.allWorks();
-//            List<Department> departments = departmentService.getAllDepartments();
-//            model.addAttribute("updatedEmp", employee);
-//            model.addAttribute("works", works);
-//            model.addAttribute("departments", departments);
-//            return "layout/tabletest";
-//        }
-//    }
-
 }

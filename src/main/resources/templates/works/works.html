@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:custom="http://www.w3.org/1999/xhtml">
 <body>
 <div layout:fragment="content">
     <section class="content-header">
@@ -49,16 +49,36 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="work:${works}">
-                                    <td th:text="${work.id}">1</td>
-                                    <td th:text="${work.name}">Developer</td>
+                                    <td th:text="${work.id}">ID</td>
+                                    <td th:text="${work.name}">Name</td>
                                     <td>
+                                        <a class="btn btn-primary" th:href="@{../jobs/edit(id=${work.id})}"
+                                           custom:linkMethod="get">Edit</a>
+
+                                        <!--<form class="search-form-edit" th:action="@{../jobs/edit}"
+                                              th:object="${work.id}" method="get">
+                                            <button type="submit" th:value="${work.id}" th:name="id"
+                                                    class="btn btn-primary">Edit
+                                            </button>
+                                        </form>-->
+                                    </td>
+                                    <td>
+                                        <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
+                                              th:action="@{../jobs/deleteJob}"
+                                              th:object="${work.id}" method="post">
+                                            <button type="submit" th:value="${work.id}" th:name="id"
+                                                    class="btn btn-danger">Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <!--<td>
                                         <form class="search-form-edit" th:action="@{../jobs/edit}"
                                               th:object="${work.id}" method="get">
                                             <button type="submit" th:value="${work.id}" th:name="id"
                                                     class="btn btn-primary">Edit this job
                                             </button>
                                         </form>
-                                    </td>
+                                    </td>-->
                                 </tr>
                                 </tbody>
                                 <tfoot>

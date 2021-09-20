@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:custom="http://www.w3.org/1999/xhtml">
 <head>
     <title>Employees List</title>
 </head>
@@ -13,7 +13,7 @@
                     <p>
                         Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
                     </p>
-                    <input type="submit" value="Sign Out" class="btn btn-primary mb-2" />
+                    <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>
                 </form>
             </div>
             <div class="row mb-2">
@@ -66,18 +66,22 @@
                                     <td th:text="${employee.department.name}">Department</td>
                                     <td th:text="${employee.work.name}">Job</td>
                                     <td>
-                                        <form class="search-form-edit" th:action="@{../employees/edit}"
+                                        <a class="btn btn-primary" th:href="@{../employees/edit(id=${employee.id})}"
+                                           custom:linkMethod="get">Edit</a>
+
+                                        <!--<form class="search-form-edit" th:action="@{../employees/edit}"
                                               th:object="${employee.id}" method="get">
                                             <button type="submit" th:value="${employee.id}" th:name="id"
                                                     class="btn btn-primary">Edit
                                             </button>
-                                        </form>
+                                        </form>-->
                                     </td>
                                     <td>
-                                        <form class="search-form-edit" th:action="@{../employees/deleteEmp}"
+                                        <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
+                                              th:action="@{../employees/deleteEmp}"
                                               th:object="${employee.id}" method="post">
                                             <button type="submit" th:value="${employee.id}" th:name="id"
-                                                    class="btn btn-primary">Delete
+                                                    class="btn btn-danger">Delete
                                             </button>
                                         </form>
                                     </td>

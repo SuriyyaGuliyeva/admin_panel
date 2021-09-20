@@ -5,5 +5,5 @@ import com.apps.first_app.modelView.Employee.EmployeeDTO;
 import java.util.List;
 
 public interface CustomEmployeeServiceInter {
-    List<EmployeeDTO> EmployeeList();
+//    List<EmployeeDTO> EmployeeList();
 }

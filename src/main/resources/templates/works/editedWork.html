@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
-<body >
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
 <div layout:fragment="content">
     <section class="content-header">
         <div class="container-fluid">
@@ -25,25 +26,33 @@
                         <div class="card-header">
                             <h3 class="card-title">Form</h3>
                         </div>
-                        <form class="form-horizontal" th:action="@{../jobs/newEditedWork}" th:object="${editedWork}" method="post">
+                        <form class="form-horizontal" th:action="@{../jobs/update}" th:object="${editedWork}"
+                              method="post">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label  class="col-sm-2 col-form-label">Job Id</label>
+                                    <label class="col-sm-2 col-form-label">Job Id</label>
                                     <div class="col-sm-10">
-                                        <input type="text" readonly="readonly" class="form-control" required th:field="${editedWork.id}" th:value="${editedWork.id}" th:name="name"/>
+                                        <input type="text" readonly="readonly" class="form-control" required
+                                               th:field="${editedWork.id}" th:value="${editedWork.id}" th:name="name"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label  class="col-sm-2 col-form-label">Job Name</label>
+                                    <label class="col-sm-2 col-form-label">Job Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" required th:field="${editedWork.name}" th:value="${editedWork.name}" th:name="name"/>
+                                        <input type="text" class="form-control" required th:field="${editedWork.name}"
+                                               th:value="${editedWork.name}" th:name="name"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn danger float-right m-1" value="Delete" name="action">Delete</button>
-                                <button type="submit" class="btn btn-default float-right m-1" value="Reset">Reset</button>
-                                <button type="submit" class="btn btn-info float-right m-1" value="Update" name="action">Update</button>
+                                <button type="submit" class="btn danger float-right m-1" value="Delete" name="action">
+                                    Delete
+                                </button>
+                                <button type="submit" class="btn btn-default float-right m-1" value="Reset">Reset
+                                </button>
+                                <button type="submit" class="btn btn-info float-right m-1" value="Update" name="action">
+                                    Update
+                                </button>
                             </div>
                         </form>
                     </div>

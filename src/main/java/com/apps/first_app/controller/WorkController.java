@@ -1,5 +1,6 @@
 package com.apps.first_app.controller;
 
+import com.apps.first_app.model.Employee;
 import com.apps.first_app.model.Work;
 import com.apps.first_app.service.inter.WorkService;
 import javassist.NotFoundException;
@@ -32,8 +33,6 @@ public class WorkController {
         return "works/works";
     }
 
-
-
     @GetMapping(value = "/addOrEdit", params = "action=Add a new job")
     public String add(Model model) {
         model.addAttribute("newJob", new Work());
@@ -65,17 +64,29 @@ public class WorkController {
         }
     }
 
-    @PostMapping(value = "/newEditedWork", params = "action=Update")
-    public String edit(@ModelAttribute Work work) {
+    @PostMapping(value = "/update")
+    public String updateEmp(@ModelAttribute Work work) {
         workService.update(work);
         return "redirect:/jobs/list";
     }
 
-    @PostMapping(value = "/newEditedWork", params = "action=Delete")
-    public String delete(@ModelAttribute Work work) {
+    @PostMapping("/deleteJob")
+    public String delete(@ModelAttribute Work work, @RequestParam("id") Long id) {
         workService.delete(work.getId());
         return "redirect:/jobs/list";
     }
+
+//    @PostMapping(value = "/newEditedWork", params = "action=Update")
+//    public String edit(@ModelAttribute Work work) {
+//        workService.update(work);
+//        return "redirect:/jobs/list";
+//    }
+//
+//    @PostMapping(value = "/newEditedWork", params = "action=Delete")
+//    public String delete(@ModelAttribute Work work) {
+//        workService.delete(work.getId());
+//        return "redirect:/jobs/list";
+//    }
 
 //    @GetMapping("/search")
 //    public String search(Model model) {
