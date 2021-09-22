@@ -11,14 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class PageController {
 
-    private final UserRepository repo;
+    private final UserRepository userRepository;
 
-    public PageController(UserRepository repo) {
-        this.repo = repo;
+    public PageController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @GetMapping({"", "/home"})
@@ -49,7 +50,7 @@ public class PageController {
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        repo.save(user);
+        userRepository.save(user);
         return "redirect:/login";
     }
 
@@ -62,17 +63,3 @@ public class PageController {
         return "redirect:/";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

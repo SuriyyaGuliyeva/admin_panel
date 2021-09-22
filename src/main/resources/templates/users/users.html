@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:custom="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Users List</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <p>
+                        Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+                    </p>
+                    <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>
+                </form>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Users</h1><br>
+                    <form class="btn--form" th:action="@{../users/add}" method="get">
+                        <input type="submit" value="Add a new user" class="btn btn-primary"/>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">DataTable with default features</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Profile photo</th>
+                                    <th>Identity document (ID)</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.image}" scope="row">
+                                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{user.image}}"
+                                             style="width: 100px; height: 100px;">
+                                    </td>
+                                    <td th:text="${user.id}">1</td>
+                                    <td th:text="${user.firstName}">Name</td>
+                                    <td th:text="${user.lastName}">Surname</td>
+                                    <td th:text="${user.email}">Phone</td>
+                                    <td>
+                                        <a class="btn btn-primary" th:href="@{../users/edit(id=${user.id})}"
+                                           custom:linkMethod="get">Edit</a>
+                                    </td>
+                                    <td>
+                                        <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
+                                              th:action="@{../users/delete}"
+                                              th:object="${user.id}" method="post">
+                                            <button type="submit" th:value="${user.id}" th:name="id"
+                                                    class="btn btn-danger">Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Profile photo</th>
+                                    <th>Identity document (ID)</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+
+
+<!-- HELELIK BU -->
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:custom="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Users List</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Users</h1><br>
+                    <form class="btn&#45;&#45;form" th:action="@{../users/add}" method="get">
+                        <input type="submit" value="Add a new user" class="btn btn-primary"/>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">DataTable with default features</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Identity document (ID)</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.id}">ID</td>
+                                    <td th:text="${user.firstName}">Name</td>
+                                    <td th:text="${user.lastName}">Surname</td>
+                                    <td th:text="${user.email}">Email</td>
+                                    <td>
+                                        <a class="btn btn-primary" th:href="@{../users/edit(id=${user.id})}"
+                                           custom:linkMethod="get">Edit</a>
+                                    </td>
+                                    <td>
+                                        <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
+                                              th:action="@{../users/delete}"
+                                              th:object="${user.id}" method="post">
+                                            <button type="submit" th:value="${user.id}" th:name="id"
+                                                    class="btn btn-danger">Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Identity document (ID)</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>-->
