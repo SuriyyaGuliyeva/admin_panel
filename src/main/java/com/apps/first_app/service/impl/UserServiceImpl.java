@@ -23,26 +23,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserToDB(MultipartFile file, String firstName, String lastName, String email, String password) {
-        User user = new User();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if (fileName.contains("..")) {
-            System.out.println("not a valid file");
-        }
-        try {
-            user.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-
-        userRepository.save(user);
-    }
-
-    @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         Iterable<User> iterable = userRepository.findAll();
@@ -90,6 +70,7 @@ public class UserServiceImpl implements UserService {
         oldUser.setLastName(user.getLastName());
         oldUser.setEmail(user.getEmail());
         oldUser.setPassword(user.getPassword());
+//        oldUser.setPhoto(user.getPhoto());
 
         userRepository.save(oldUser);
     }

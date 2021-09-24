@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -30,9 +31,17 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private String image;
+//    @Column(length = 45, nullable = true)
+//    private String photo;
+
+//    @Transient
+//    public String getPhotoPath() {
+//        if (photo == null || id == null) {
+//            return null;
+//        }
+//
+//        return "/user-photos/" + id + "/" + photo;
+//    }
 
     /*public Long getId() {
         return id;

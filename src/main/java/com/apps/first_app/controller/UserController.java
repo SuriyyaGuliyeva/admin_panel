@@ -1,13 +1,19 @@
 package com.apps.first_app.controller;
 
-import com.apps.first_app.model.Department;
 import com.apps.first_app.model.User;
 import com.apps.first_app.service.inter.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -33,29 +39,51 @@ public class UserController {
         return "users/addUser";
     }
 
-    @PostMapping("/newUser")
-    public String newUser(@RequestParam("file") MultipartFile file,
-                          @RequestParam("firstName") String firstName,
-                          @RequestParam("lastName") String lastName,
-                          @RequestParam("email") String email,
-                          @RequestParam("password") String password) {
-        userService.saveUserToDB(file, firstName, lastName, email, password);
-        return "redirect:/users/list";
-
-//        userService.save(user);
+//    @PostMapping("/newUser")
+//    public String newUser(@ModelAttribute User user,
+//                          @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+//
+//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//
+//        user.setPhoto(fileName);
+//        User savedUser = userService.save(user);
+//
+//        String uploadDir = "./user-photos/" + savedUser.getId();
+//        Path uploadPath = Paths.get(uploadDir);
+//
+//        if (!Files.exists(uploadPath)) {
+//            Files.createDirectories(uploadPath);
+//        }
+//
+//        try (InputStream inputStream = multipartFile.getInputStream()) {
+//            Path filePath = uploadPath.resolve(fileName);
+//
+////            System.out.println(filePath.toString());
+//
+//            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+//        } catch (IOException e) {
+//            throw new IOException("Couldn't save uploaded file: " + fileName);
+//        }
+//
 //        return "redirect:/users/list";
+//    }
+
+    @PostMapping("/newUser")
+    public String newUser(@ModelAttribute User user) {
+        userService.save(user);
+        return "redirect:/users/list";
     }
 
     @GetMapping("/edit")
     public String editUser(Model model, @RequestParam("id") Long id) {
-       User user = userService.getById(id);
+        User user = userService.getById(id);
 
-       if (user == null) {
-           return "commonPages/notFoundPage";
-       } else {
-           model.addAttribute("editedUser", user);
-           return "users/editedUser";
-       }
+        if (user == null) {
+            return "commonPages/notFoundPage";
+        } else {
+            model.addAttribute("editedUser", user);
+            return "users/editedUser";
+        }
     }
 
     @PostMapping("/update")

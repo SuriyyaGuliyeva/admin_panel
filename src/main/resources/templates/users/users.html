@@ -56,9 +56,8 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="user:${users}">
-                                    <td th:text="${user.image}" scope="row">
-                                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{user.image}}"
-                                             style="width: 100px; height: 100px;">
+                                    <td>
+<!--                                       <img th:src="@{${user.getPhotoPath}}" style="width: 100px;" />-->
                                     </td>
                                     <td th:text="${user.id}">1</td>
                                     <td th:text="${user.firstName}">Name</td>
@@ -66,14 +65,14 @@
                                     <td th:text="${user.email}">Phone</td>
                                     <td>
                                         <a class="btn btn-primary" th:href="@{../users/edit(id=${user.id})}"
-                                           custom:linkMethod="get">Edit</a>
+                                           custom:linkMethod="get"><i class="far fa-edit"></i></a>
                                     </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
                                               th:action="@{../users/delete}"
                                               th:object="${user.id}" method="post">
                                             <button type="submit" th:value="${user.id}" th:name="id"
-                                                    class="btn btn-danger">Delete
+                                                    class="btn btn-danger" style="width: 44px;"><i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>
                                     </td>

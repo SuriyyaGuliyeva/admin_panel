@@ -15,6 +15,4 @@ public interface UserService {
     void update(User user);
 
     void delete(Long id);
-
-    void saveUserToDB(MultipartFile file, String firstName, String lastName, String email, String password);
 }

@@ -53,7 +53,7 @@
                                     <td th:text="${work.name}">Name</td>
                                     <td>
                                         <a class="btn btn-primary" th:href="@{../jobs/edit(id=${work.id})}"
-                                           custom:linkMethod="get">Edit</a>
+                                           custom:linkMethod="get"><i class="far fa-edit"></i></a>
 
                                         <!--<form class="search-form-edit" th:action="@{../jobs/edit}"
                                               th:object="${work.id}" method="get">
@@ -67,8 +67,7 @@
                                               th:action="@{../jobs/deleteJob}"
                                               th:object="${work.id}" method="post">
                                             <button type="submit" th:value="${work.id}" th:name="id"
-                                                    class="btn btn-danger">Delete
-                                            </button>
+                                                    class="btn btn-danger" style="width: 44px;"><i class="far fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                     <!--<td>

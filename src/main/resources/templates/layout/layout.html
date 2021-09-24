@@ -109,7 +109,7 @@
             <footer class="main-footer">
                 <div class="float-right d-none d-sm-block">
                     <span>
-                        <b>Version </b>3.1.0
+                        <b>Version</b>3.1.0
                     </span>
                 </div>
                 <p>
@@ -168,6 +168,22 @@
                     "responsive": true,
                 });
             });
+
+            // 23.09.2021
+            $("#fileImage").change(function () {
+                showImageThumbnail(this);
+            });
+
+            function showImageThumbnail(fileInput) {
+                file = fileInput.files[0];
+                reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#thumbnail').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            }
         </script>
     </body>
 
