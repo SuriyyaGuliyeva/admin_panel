@@ -10,22 +10,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FirstAppApplication implements CommandLineRunner {
 
-	private final WorkRepository workRepository;
-	private final DepartmentRepository departmentRepository;
-	private final EmployeeRepository employeeRepository;
+    private final WorkRepository workRepository;
+    private final DepartmentRepository departmentRepository;
+    private final EmployeeRepository employeeRepository;
 
-	public FirstAppApplication(WorkRepository workRepository, DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
-		this.workRepository = workRepository;
-		this.departmentRepository = departmentRepository;
-		this.employeeRepository = employeeRepository;
-	}
+    public FirstAppApplication(WorkRepository workRepository, DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
+        this.workRepository = workRepository;
+        this.departmentRepository = departmentRepository;
+        this.employeeRepository = employeeRepository;
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(FirstAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FirstAppApplication.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 //		Department department = departmentRepository.findById(1L).get();
 //
 //		Employee employee = employeeRepository.findById(1L).get();
@@ -44,5 +44,5 @@ public class FirstAppApplication implements CommandLineRunner {
 //
 //        work.setEmployees(employees);
 //        workRepository.save(work);
-	}
+    }
 }

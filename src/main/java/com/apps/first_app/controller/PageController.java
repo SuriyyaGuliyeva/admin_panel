@@ -2,6 +2,7 @@ package com.apps.first_app.controller;
 
 import com.apps.first_app.model.User;
 import com.apps.first_app.repository.inter.UserRepository;
+import com.apps.first_app.service.inter.UserService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class PageController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public PageController(UserRepository userRepository) {
+    public PageController(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
         this.userRepository = userRepository;
     }
 
@@ -62,4 +65,22 @@ public class PageController {
         }
         return "redirect:/";
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
