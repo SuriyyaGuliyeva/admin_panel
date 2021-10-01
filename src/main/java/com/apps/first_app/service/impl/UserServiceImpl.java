@@ -82,36 +82,36 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
-        User user = userRepository.findByEmail(email);
+//    @Override
+//    public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
+//        User user = userRepository.findByEmail(email);
+//
+//        if (user != null) {
+//            user.setResetPasswordToken(token);
+//            userRepository.save(user);
+//        } else {
+//            throw new UserNotFoundException("Couldn't find any user with this email: " + email);
+//        }
+//    }
 
-        if (user != null) {
-            user.setResetPasswordToken(token);
-            userRepository.save(user);
-        } else {
-            throw new UserNotFoundException("Couldn't find any user with this email: " + email);
-        }
-    }
-
-    @Override
-    public User get(String resetPasswordToken) {
-        return userRepository.findByResetPasswordToken(resetPasswordToken);
-    }
-
-    @Override
-    public void updatePassword(User user, String newPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(newPassword);
-
-        user.setPassword(encodedPassword);
-        user.setResetPasswordToken(null);
-        userRepository.save(user);
-    }
-
-    @Override
-    public User getByResetPasswordToken(String token) {
-        return userRepository.findByResetPasswordToken(token);
-    }
+//    @Override
+//    public User get(String resetPasswordToken) {
+//        return userRepository.findByResetPasswordToken(resetPasswordToken);
+//    }
+//
+//    @Override
+//    public void updatePassword(User user, String newPassword) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encodedPassword = passwordEncoder.encode(newPassword);
+//
+//        user.setPassword(encodedPassword);
+//        user.setResetPasswordToken(null);
+//        userRepository.save(user);
+//    }
+//
+//    @Override
+//    public User getByResetPasswordToken(String token) {
+//        return userRepository.findByResetPasswordToken(token);
+//    }
 
 }

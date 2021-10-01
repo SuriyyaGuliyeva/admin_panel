@@ -17,11 +17,11 @@ public interface UserService {
 
     void delete(Long id);
 
-    void updateResetPasswordToken(String token, String email) throws UserNotFoundException;
-
-    User get(String resetPasswordToken);
-
-    void updatePassword(User user, String newPassword);
-
-    User getByResetPasswordToken(String token);
+//    void updateResetPasswordToken(String token, String email) throws UserNotFoundException;
+//
+//    User get(String resetPasswordToken);
+//
+//    void updatePassword(User user, String newPassword);
+//
+//    User getByResetPasswordToken(String token);
 }

@@ -31,8 +31,8 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(name="reset_password_token")
-    private String resetPasswordToken;
+//    @Column(name="reset_password_token")
+//    private String resetPasswordToken;
 
 //    @Column(length = 45, nullable = true)
 //    private String photo;
