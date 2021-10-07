@@ -1,7 +1,6 @@
 package com.apps.first_app.controller;
 
 import com.apps.first_app.model.Department;
-import com.apps.first_app.model.Employee;
 import com.apps.first_app.service.inter.DepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,19 +42,12 @@ public class DepartmentController {
         return "redirect:/departments/list";
     }
 
-//    @GetMapping(value = "/addOrEdit", params = "action=Edit a department")
-//    @ApiOperation(value = "Method for search a department")
-//    public String searchDep(Model model) {
-//        model.addAttribute("searchDep", new Department());
-//        return "departments/searchDep";
-//    }
-
     @GetMapping("/edit")
     public String editDep(Model model, @RequestParam("id") Long id) {
         Department department = departmentService.getById(id);
 
         if (department == null) {
-            return "commonPages/notFoundPage";
+            return "common/notFoundPage";
         } else {
             model.addAttribute("editedDep", department);
             return "departments/editedDep";
@@ -74,30 +66,4 @@ public class DepartmentController {
         return "redirect:/departments/list";
     }
 
-//    @PostMapping(value = "/updateOrDelete", params = "action=Update")
-//    @ApiOperation(value = "Method for update a department")
-//    public String update(@ModelAttribute Department department) {
-//        departmentService.update(department);
-//        return "redirect:/departments/list";
-//    }
-//
-//    @PostMapping(value = "/updateOrDelete", params = "action=Delete")
-//    @ApiOperation(value = "Method for delete a department")
-//    public String delete(@ModelAttribute Department department) {
-////        departmentService.delete(department.getId());
-//        return "redirect:/departments/list";
-//    }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

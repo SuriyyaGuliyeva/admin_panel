@@ -1,0 +1,57 @@
+.error-page-link,
+.for-link-btn a {
+    font-size: 16px;
+    padding: 15px 50px;
+    border-radius: 50px;
+    border: 1px solid #343a40;
+    background: #343a40;
+    color: #fff;
+    transition: .3s ease-in-out;
+}
+
+.error-page-link:hover,
+.for-link-btn a:hover {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    transition: .3s ease-in-out;
+}
+
+.page-div {
+    font-family: -webkit-pictograph;
+}
+
+.page-div h3 {
+    font-weight: bold;
+    font-size: 35px;
+    color: #343a40;
+    margin-bottom: 0;
+}
+
+.page-div h3 span {
+    font-size: 10px;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+
+.page-div h1 {
+    display: inline-block;
+    font-size: 7rem;
+    font-weight: bold;
+    position: relative;
+}
+
+.page-div h1:after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    margin: 5px 0;
+    background-color: #343a40;
+    border: .5px solid #343a40;
+}
+
+.page-div p {
+    letter-spacing: 2px;
+}

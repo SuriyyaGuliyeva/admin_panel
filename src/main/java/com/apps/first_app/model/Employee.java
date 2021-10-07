@@ -1,6 +1,5 @@
 package com.apps.first_app.model;
 
-import com.apps.first_app.modelView.Employee.EmployeeDTO;
 import lombok.*;
 import javax.persistence.*;
 

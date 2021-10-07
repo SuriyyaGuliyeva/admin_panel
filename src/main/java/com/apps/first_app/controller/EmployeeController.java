@@ -47,7 +47,7 @@ public class EmployeeController {
     @PostMapping("/newEmployee")
     public String addNewEmployee(@ModelAttribute Employee employee) {
         if (employee.getDepartment() == null || employee.getWork() == null) {
-            return "commonPages/notFoundDepOrWork";
+            return "common/notFoundDepOrWork";
         } else {
             employeeService.add(employee);
             return "redirect:/employees/list";
@@ -61,7 +61,7 @@ public class EmployeeController {
         List<Department> departments = departmentService.getAllDepartments();
 
         if (employee == null) {
-            return "commonPages/notFoundPage";
+            return "common/notFoundPage";
         } else {
             model.addAttribute("updatedEmp", employee);
             model.addAttribute("works", works);
@@ -76,26 +76,9 @@ public class EmployeeController {
         return "redirect:/employees/list";
     }
 
-//    @PostMapping(value = "/updateOrDelete", params = "action=Delete")
-//    public String deleteEmp(@ModelAttribute Employee employee) {
-//        if (employee.getDepartment() == null || employee.getWork() == null) {
-//            return "commonPages/notFoundDepOrWork";
-//        } else {
-//            employeeService.delete(employee.getId());
-//            return "redirect:/employees/list";
-//        }
-//    }
-
     @PostMapping("/deleteEmp")
     public String delete(@ModelAttribute Employee employee, @RequestParam("id") Long id) {
         employeeService.delete(employee.getId());
         return "redirect:/employees/list";
     }
-
-//    @GetMapping(value = "/addOrEdit", params = "action=Edit an employee")
-//    public String editEmployeeForm(Model model) {
-//        model.addAttribute("searchEmp", new Employee());
-//        return "employees/searchEmp";
-//    }
-
 }

@@ -1,18 +1,12 @@
 package com.apps.first_app.service.impl;
 
-import com.apps.first_app.exception.UserNotFoundException;
 import com.apps.first_app.model.User;
 import com.apps.first_app.repository.inter.UserRepository;
 import com.apps.first_app.service.inter.UserService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Service

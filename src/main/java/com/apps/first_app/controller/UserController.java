@@ -79,7 +79,7 @@ public class UserController {
         User user = userService.getById(id);
 
         if (user == null) {
-            return "commonPages/notFoundPage";
+            return "common/notFoundPage";
         } else {
             model.addAttribute("editedUser", user);
             return "users/editedUser";

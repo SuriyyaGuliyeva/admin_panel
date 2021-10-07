@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">>
 <head>
 </head>
 <body>
@@ -15,12 +15,26 @@
                                  th:href="@{/css/dist/img/AdminLTELogo.png}"
                                  class="brand-image img-circle elevation-3" style="opacity: .8">
                         </a>
-                        <h1>Welcome to AdminLTE 3 <b>[[${#request.userPrincipal.principal.fullName}]]</b>!</h1>
+                        <h1>
+                            Welcome to AdminLTE 3!
+                        </h1>
+                        <p>If you don't have an account, please register!</p>
+                        <div class="for-link-btn d-inline-block mt-4 mb-5">
+                            <a th:href="@{/register}">Register</a>
+                            <a th:href="@{/login}">Login</a>
+                        </div>
                         <div>
                             <div class="card d-inline-block" style="width: 18rem;">
                                 <a class="text-cyan" href="/employees/list">
                                     <div class="card-body">
                                         <p class="card-text">Employees' List</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card d-inline-block" style="width: 18rem;">
+                                <a class="text-cyan" href="/jobs/list">
+                                    <div class="card-body">
+                                        <p class="card-text">Jobs' List</p>
                                     </div>
                                 </a>
                             </div>
@@ -32,9 +46,9 @@
                                 </a>
                             </div>
                             <div class="card d-inline-block" style="width: 18rem;">
-                                <a class="text-cyan" href="/jobs/list">
+                                <a class="text-cyan" href="/users/list">
                                     <div class="card-body">
-                                        <p class="card-text">Jobs' List</p>
+                                        <p class="card-text">Users' List</p>
                                     </div>
                                 </a>
                             </div>

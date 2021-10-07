@@ -1,5 +1,6 @@
 package com.apps.first_app.model;
 
+//import com.apps.first_app.model.enums.Login;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

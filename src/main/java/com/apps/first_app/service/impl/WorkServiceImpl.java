@@ -45,7 +45,7 @@ public class WorkServiceImpl implements WorkService {
         Work work = null;
 
         try {
-            return work = workRepository.findById(id).get();
+            work = workRepository.findById(id).get();
         } catch (Exception exception) {
             exception.printStackTrace();
         }

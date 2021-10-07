@@ -1,6 +1,5 @@
 package com.apps.first_app.controller;
 
-import com.apps.first_app.model.Employee;
 import com.apps.first_app.model.Work;
 import com.apps.first_app.service.inter.WorkService;
 import javassist.NotFoundException;
@@ -45,19 +44,12 @@ public class WorkController {
         return "redirect:/jobs/list";
     }
 
-//    @GetMapping(value = "/addOrEdit", params = "action=Edit a job")
-//    public String update(Model model) {
-//        model.addAttribute("search", new Work());
-//        return "works/search";
-//    }
-
-
     @GetMapping("/edit")
     public String edit(Model model, @RequestParam("id") Long id) throws NotFoundException {
         Work work = workService.getById(id);
 
         if (work == null) {
-            return "commonPages/notFoundPage";
+            return "common/notFoundPage";
         } else {
             model.addAttribute("editedWork", work);
             return "works/editedWork";
@@ -75,23 +67,4 @@ public class WorkController {
         workService.delete(work.getId());
         return "redirect:/jobs/list";
     }
-
-//    @PostMapping(value = "/newEditedWork", params = "action=Update")
-//    public String edit(@ModelAttribute Work work) {
-//        workService.update(work);
-//        return "redirect:/jobs/list";
-//    }
-//
-//    @PostMapping(value = "/newEditedWork", params = "action=Delete")
-//    public String delete(@ModelAttribute Work work) {
-//        workService.delete(work.getId());
-//        return "redirect:/jobs/list";
-//    }
-
-//    @GetMapping("/search")
-//    public String search(Model model) {
-//        model.addAttribute("search", new Work());
-//        return "search";
-//    }
-
 }

@@ -2,7 +2,7 @@ package com.apps.first_app.controller;
 
 import com.apps.first_app.model.User;
 import com.apps.first_app.repository.inter.UserRepository;
-import com.apps.first_app.service.inter.UserService;
+//import com.apps.first_app.service.inter.SessionService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,30 +10,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class PageController {
 
+//    private final SessionService sessionService;
     private final UserRepository userRepository;
-    private final UserService userService;
 
-    public PageController(UserService userService, UserRepository userRepository) {
-        this.userService = userService;
+    public PageController(UserRepository userRepository) {
+//        this.sessionService = sessionService;
         this.userRepository = userRepository;
     }
 
     @GetMapping({"", "/home"})
     public String homePage() {
-        return "commonPages/index";
+        return "common/index";
     }
-
-//    @GetMapping("/homePage")
-//    public String homePage() {
-//        return "commonPages/homePage";
-//    }
 
     @GetMapping("/register")
     public String showSignUpForm(Model model) {
@@ -42,7 +35,7 @@ public class PageController {
         // bu kodun register ucun duzgunluyunden emin ol
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "commonPages/signupForm";
+            return "register/signupForm";
         }
         return "redirect:/";
     }
@@ -65,22 +58,4 @@ public class PageController {
         }
         return "redirect:/";
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
