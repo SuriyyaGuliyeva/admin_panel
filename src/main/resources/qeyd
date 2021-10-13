@@ -1,0 +1,7 @@
+<!--            <div>-->
+<!--                <p>-->
+<!--                    Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>-->
+<!--                </p>-->
+<!--            </div>-->
+
+bunu employees, works ve departments-e elave edersen, eger register ve login duzgun ishlese.

@@ -5,19 +5,11 @@
 <div layout:fragment="content">
     <section class="content-header">
         <div class="container-fluid">
-            <div>
-                <form th:action="@{/logout}" method="post">
-                    <p>
-                        Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
-                    </p>
-                    <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>
-                </form>
-            </div>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Departments</h1><br>
-                    <form class="btn--form" th:action="@{../departments/addOrEdit}" method="get">
-                        <input type="submit" name="action" value="Add a new department" class="btn btn-primary"/>
+                    <form class="btn--form" th:action="@{../departments/add}" method="get">
+                        <input type="submit" value="Add a new department" class="btn btn-primary"/>
                     </form>
                 </div>
                 <div class="col-sm-6">
@@ -55,13 +47,6 @@
                                     <td>
                                         <a class="btn btn-primary" th:href="@{../departments/edit(id=${department.id})}"
                                            custom:linkMethod="get"><i class="far fa-edit"></i></a>
-
-                                        <!--<form class="search-form-edit" th:action="@{../departments/edit}"
-                                              th:object="${department.id}" method="get">
-                                            <button type="submit" th:value="${department.id}" th:name="id"
-                                                    class="btn btn-primary">Edit
-                                            </button>
-                                        </form>-->
                                     </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure?');" class="search-form-edit"
@@ -71,14 +56,6 @@
                                                     class="btn btn-danger" style="width: 44px;"><i class="far fa-trash-alt"></i></button>
                                         </form>
                                     </td>
-                                    <!--<td>
-                                        <form class="search-form-edit" th:action="@{../departments/edit}"
-                                              th:object="${department.id}" method="get">
-                                            <button type="submit" th:value="${department.id}" th:name="id"
-                                                    class="btn btn-primary">Edit this department
-                                            </button>
-                                        </form>
-                                    </td>-->
                                 </tr>
                                 </tbody>
                                 <tfoot>

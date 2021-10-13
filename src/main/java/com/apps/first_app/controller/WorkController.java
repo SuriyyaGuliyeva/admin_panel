@@ -32,7 +32,7 @@ public class WorkController {
         return "works/works";
     }
 
-    @GetMapping(value = "/addOrEdit", params = "action=Add a new job")
+    @GetMapping(value = "/add")
     public String add(Model model) {
         model.addAttribute("newJob", new Work());
         return "works/newJob";
@@ -48,12 +48,8 @@ public class WorkController {
     public String edit(Model model, @RequestParam("id") Long id) throws NotFoundException {
         Work work = workService.getById(id);
 
-        if (work == null) {
-            return "common/notFoundPage";
-        } else {
-            model.addAttribute("editedWork", work);
-            return "works/editedWork";
-        }
+        model.addAttribute("editedWork", work);
+        return "works/editedWork";
     }
 
     @PostMapping(value = "/update")

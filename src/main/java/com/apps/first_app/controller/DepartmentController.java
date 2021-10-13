@@ -29,7 +29,7 @@ public class DepartmentController {
         return "departments/departments";
     }
 
-    @GetMapping(value = "/addOrEdit", params = "action=Add a new department")
+    @GetMapping(value = "/add")
     public String addDep(Model model) {
         model.addAttribute("addDep", new Department());
         return "departments/addDep";
@@ -46,12 +46,8 @@ public class DepartmentController {
     public String editDep(Model model, @RequestParam("id") Long id) {
         Department department = departmentService.getById(id);
 
-        if (department == null) {
-            return "common/notFoundPage";
-        } else {
-            model.addAttribute("editedDep", department);
-            return "departments/editedDep";
-        }
+        model.addAttribute("editedDep", department);
+        return "departments/editedDep";
     }
 
     @PostMapping(value = "/update")

@@ -33,7 +33,7 @@ public class EmployeeController {
         return "employees/employees";
     }
 
-    @GetMapping(value = "/addOrEdit", params = "action=Add a new employee")
+    @GetMapping(value = "/add")
     public String addEmployeeFrom(Model model) {
         List<Work> works = workService.allWorks();
         List<Department> departments = departmentService.getAllDepartments();
@@ -46,12 +46,8 @@ public class EmployeeController {
 
     @PostMapping("/newEmployee")
     public String addNewEmployee(@ModelAttribute Employee employee) {
-        if (employee.getDepartment() == null || employee.getWork() == null) {
-            return "common/notFoundDepOrWork";
-        } else {
-            employeeService.add(employee);
-            return "redirect:/employees/list";
-        }
+        employeeService.add(employee);
+        return "redirect:/employees/list";
     }
 
     @GetMapping("/edit")
@@ -60,14 +56,10 @@ public class EmployeeController {
         List<Work> works = workService.allWorks();
         List<Department> departments = departmentService.getAllDepartments();
 
-        if (employee == null) {
-            return "common/notFoundPage";
-        } else {
-            model.addAttribute("updatedEmp", employee);
-            model.addAttribute("works", works);
-            model.addAttribute("departments", departments);
-            return "employees/updatedEmp";
-        }
+        model.addAttribute("updatedEmp", employee);
+        model.addAttribute("works", works);
+        model.addAttribute("departments", departments);
+        return "employees/updatedEmp";
     }
 
     @PostMapping(value = "/update")

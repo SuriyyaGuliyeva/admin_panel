@@ -21,7 +21,8 @@
               th:href="@{/css/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../css/dist/css/adminlte.min.css" th:href="@{/css/dist/css/adminlte.min.css}">
-        <link rel="stylesheet" href="../../css/dist/css/style.css" th:href="@{/css/dist/css/style.css}">
+        <!-- Custom style -->
+        <link rel="stylesheet" href="../../css/style.css" th:href="@{/css/style.css}">
     </head>
 
     <body class="hold-transition sidebar-mini">
@@ -80,14 +81,14 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a th:href="@{/users/list}" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Users
-                                    </p>
-                                </a>
-                            </li>
+                            <!--                            <li class="nav-item">-->
+                            <!--                                <a th:href="@{/users/list}" class="nav-link">-->
+                            <!--                                    <i class="nav-icon fas fa-th"></i>-->
+                            <!--                                    <p>-->
+                            <!--                                        Users-->
+                            <!--                                    </p>-->
+                            <!--                                </a>-->
+                            <!--                            </li>-->
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -178,7 +179,7 @@
                 file = fileInput.files[0];
                 reader = new FileReader();
 
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#thumbnail').attr('src', e.target.result);
                 };
 

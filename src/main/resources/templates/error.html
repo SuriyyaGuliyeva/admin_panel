@@ -5,24 +5,21 @@
     <title>Error page</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <div class="text-center">
-                        <div class="page-div">
-                            <h3><span><i class="fas fa-circle"></i></span>Error<span><i
-                                    class="fas fa-circle"></i></span></h3>
-                            <h1>404</h1>
-                            <p class="mt-4 mb-5">Page Not Found</p>
-                            <a class="error-page-link" href="/">Go Home</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div layout:fragment="content" class="text-center">
+    <div class="btn-div error">
+        <img src="../../css/dist/img/error.png" alt="Page Not Found"
+             th:href="@{/css/dist/img/error.png}"/>
+
+        <h3>
+            <i class="fas fa-circle"></i>
+            <span>Error</span>
+            <i class="fas fa-circle"></i>
+        </h3>
+        <h1>404</h1>
+        <p class="mb-4">Page Not Found</p>
+
+        <a class="btn btn-primary" href="/">Go home page</a>
+    </div>
 </div>
 </body>
 </html>

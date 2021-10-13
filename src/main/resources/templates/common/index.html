@@ -5,59 +5,62 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <div class="text-center">
-                        <a href="/" class="brand-link text-center d-inline-block">
-                            <img src="../../css/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                                 th:href="@{/css/dist/img/AdminLTELogo.png}"
-                                 class="brand-image img-circle elevation-3" style="opacity: .8">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <a class="brand-link text-center d-inline-block">
+                    <img src="../../css/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                         th:href="@{/css/dist/img/AdminLTELogo.png}"
+                         class="brand-image img-circle elevation-3" style="opacity: .8">
+                </a>
+                <h1>
+                    Welcome to AdminLTE 3!
+                </h1>
+                <!--                        <div sec:authorize="isAnonymous()">-->
+                <!--                            <p>If you don't have an account, please register!</p>-->
+                <!--                            <div class="for-link-btn d-inline-block mt-4 mb-5">-->
+                <!--                            <a th:href="@{/register}">Register</a>-->
+                <!--                            <a th:href="@{/login}">Login</a>-->
+                <!--                        </div>-->
+                <!--                        </div>-->
+                <!--                        <div sec:authorize="isAuthenticated()">-->
+                <!--                            <form th:action="@{/logout}" method="post">-->
+                <!--                                <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>-->
+                <!--                            </form>-->
+                <!--                        </div>-->
+                <div>
+                    <div class="card d-inline-block" style="width: 18rem;">
+                        <a class="text-cyan" href="/employees/list">
+                            <div class="card-body">
+                                <p class="card-text">Employees' List</p>
+                            </div>
                         </a>
-                        <h1>
-                            Welcome to AdminLTE 3!
-                        </h1>
-                        <p>If you don't have an account, please register!</p>
-                        <div class="for-link-btn d-inline-block mt-4 mb-5">
-                            <a th:href="@{/register}">Register</a>
-                            <a th:href="@{/login}">Login</a>
-                        </div>
-                        <div>
-                            <div class="card d-inline-block" style="width: 18rem;">
-                                <a class="text-cyan" href="/employees/list">
-                                    <div class="card-body">
-                                        <p class="card-text">Employees' List</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card d-inline-block" style="width: 18rem;">
-                                <a class="text-cyan" href="/jobs/list">
-                                    <div class="card-body">
-                                        <p class="card-text">Jobs' List</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card d-inline-block" style="width: 18rem;">
-                                <a class="text-cyan" href="/departments/list">
-                                    <div class="card-body">
-                                        <p class="card-text">Departments' List</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card d-inline-block" style="width: 18rem;">
-                                <a class="text-cyan" href="/users/list">
-                                    <div class="card-body">
-                                        <p class="card-text">Users' List</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
                     </div>
+                    <div class="card d-inline-block" style="width: 18rem;">
+                        <a class="text-cyan" href="/jobs/list">
+                            <div class="card-body">
+                                <p class="card-text">Jobs' List</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card d-inline-block" style="width: 18rem;">
+                        <a class="text-cyan" href="/departments/list">
+                            <div class="card-body">
+                                <p class="card-text">Departments' List</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!--                            <div class="card d-inline-block" style="width: 18rem;">-->
+                    <!--                                <a class="text-cyan" href="/users/list">-->
+                    <!--                                    <div class="card-body">-->
+                    <!--                                        <p class="card-text">Users' List</p>-->
+                    <!--                                    </div>-->
+                    <!--                                </a>-->
+                    <!--                            </div>-->
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 </body>
 </html>
