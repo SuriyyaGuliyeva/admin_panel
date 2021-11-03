@@ -1,1 +1,3 @@
-This project is admin panel that shows the number of employees in the company, as well as the number of departments and positions. Registration and login pages are also available to view the pages.
+This project contains information about the employee, position, department in the company. So there are functions to add, delete and update employee (also task, department). I used a MySQL database in the project. If you want to know with my project visually, after downloading you need to type localhost: 8080 in the browser.
+
+I hope you like my first Java project.
